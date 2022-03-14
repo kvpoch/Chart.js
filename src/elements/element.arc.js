@@ -34,7 +34,7 @@ function toRadiusCorners(value) {
  * @returns
  */
 function parseBorderRadius(arc, innerRadius, outerRadius, angleDelta) {
-  const o = toRadiusCorners(arc.options.borderRadius);
+  const RadiusCornersObj = toRadiusCorners(arc.options.borderRadius);
   const halfThickness = (outerRadius - innerRadius) / 2;
   const innerLimit = Math.min(halfThickness, angleDelta * innerRadius / 2);
 
@@ -51,10 +51,10 @@ function parseBorderRadius(arc, innerRadius, outerRadius, angleDelta) {
   };
 
   return {
-    outerStart: computeOuterLimit(o.outerStart),
-    outerEnd: computeOuterLimit(o.outerEnd),
-    innerStart: _limitValue(o.innerStart, 0, innerLimit),
-    innerEnd: _limitValue(o.innerEnd, 0, innerLimit),
+    outerStart: computeOuterLimit(RadiusCornersObj.outerStart),
+    outerEnd: computeOuterLimit(RadiusCornersObj.outerEnd),
+    innerStart: _limitValue(RadiusCornersObj.innerStart, 0, innerLimit),
+    innerEnd: _limitValue(RadiusCornersObj.innerEnd, 0, innerLimit),
   };
 }
 
