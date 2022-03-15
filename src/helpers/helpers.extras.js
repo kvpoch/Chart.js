@@ -46,10 +46,12 @@ export function throttled(fn, thisArg, updateFn) {
  * @param {number} delay - Delay in ms. 0 = immediate invocation.
  * @returns {function}
  */
-export function debounce(fn, delay) {
+ export function debounce(fn, delay) {
+  let timeout;
   return function(...args) {
     if (delay) {
-      clearTimeout(setTimeout(fn, delay, args));
+      clearTimeout(timeout);
+      timeout = setTimeout(fn, delay, args);
     } else {
       fn.apply(this, args);
     }
