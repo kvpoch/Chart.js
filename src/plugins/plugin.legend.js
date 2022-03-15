@@ -30,7 +30,7 @@ const getBoxSize = (labelOpts, fontSize) => {
 
 const itemsEqual = (a, b) => a !== null && b !== null && a.datasetIndex === b.datasetIndex && a.index === b.index;
 
-export class Legend extends Element {
+export class Legend extends Element (isHorizontal, width, left, right, height, top, bottom) {
 
   /**
 	 * @param {{ ctx: any; options: any; chart: any; }} config
@@ -79,18 +79,6 @@ export class Legend extends Element {
     this.setDimensions();
     this.buildLabels();
     this.fit();
-  }
-
-  setDimensions() {
-    if (this.isHorizontal()) {
-      this.width = this.maxWidth;
-      this.left = this._margins.left;
-      this.right = this.width;
-    } else {
-      this.height = this.maxHeight;
-      this.top = this._margins.top;
-      this.bottom = this.height;
-    }
   }
 
   buildLabels() {

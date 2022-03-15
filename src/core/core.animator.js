@@ -63,11 +63,12 @@ export class Animator {
       }
       const items = anims.items;
       let i = items.length - 1;
-      let draw = false;
       let item;
+      let draw;
 
       for (; i >= 0; --i) {
         item = items[i];
+        draw = item._active && item._total > anims.duration;
 
         if (item._active) {
           if (item._total > anims.duration) {
@@ -76,7 +77,6 @@ export class Animator {
             anims.duration = item._total;
           }
           item.tick(date);
-          draw = true;
         } else {
           // Remove the item by replacing it with last item and removing the last
           // A lot faster than splice.
